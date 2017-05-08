@@ -1,0 +1,32 @@
+{
+  "name": "magnet-plugin-sass",
+  "version": "1.0.0",
+  "description": "Magnet plugin for compiling Sass stylesheets",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel --presets es2015 -d lib/ src/",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mthadley/magnet-plugin-sass.git"
+  },
+  "keywords": [
+    "sass",
+    "magnet"
+  ],
+  "author": "Michael T. Hadley",
+  "license": "MIT",
+  "homepage": "https://github.com/mthadley/magnet-plugin-sass#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "node-sass": "^4.5.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
