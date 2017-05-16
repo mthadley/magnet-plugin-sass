@@ -114,7 +114,7 @@ export default {
     try {
       await buildSassFiles(files, outputDir);
     } catch(err) {
-      throw new Error(`Somethng went wrong compiling your stylesheets:\n${err.message}`);
+      throw new Error(`Something went wrong compiling your stylesheets:\n${err.message}`);
     }
   },
 

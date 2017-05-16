@@ -7,12 +7,11 @@ import fs from 'fs';
 import plugin from '../index';
 
 describe('magnet-plugin-sass', () => {
-  fs.writeFile.mockImplementation((file, content, cb) => cb());
-
   let magnet;
 
   beforeEach(() => {
     jest.clearAllMocks();
+    fs.writeFile.mockImplementation((file, content, cb) => cb());
 
     const engine = {
       use: jest.fn()
@@ -86,5 +85,13 @@ describe('magnet-plugin-sass', () => {
     expect(spy).not.toHaveBeenCalled();
     await plugin.start(magnet);
     expect(spy).toHaveBeenCalled();
-  })
+  });
+
+  it('should throw an Error if build fails', () => {
+    fs.writeFile.mockImplementation(() => {
+      throw new Error()
+    });
+
+    return expect(plugin.build(magnet)).rejects.toBeInstanceOf(Error);
+  });
 });
