@@ -26,6 +26,9 @@
   "author": "Michael T. Hadley",
   "license": "MIT",
   "homepage": "https://github.com/mthadley/magnet-plugin-sass#readme",
+  "peerDependencies": {
+    "magnet": ">= 1.0.1 < 2"
+  },
   "dependencies": {
     "express": "^4.15.2",
     "node-sass": "^4.5.2"

@@ -44,6 +44,7 @@ describe('magnet-plugin-sass', () => {
   it('should export build and test methods', () => {
     expect(plugin.build).toBeInstanceOf(Function);
     expect(plugin.test).toBeInstanceOf(Function);
+    expect(plugin.start).toBeInstanceOf(Function);
   });
 
   it('should return false for all modules', () => {
@@ -78,4 +79,12 @@ describe('magnet-plugin-sass', () => {
     expect(fs.writeFile).toHaveBeenCalledTimes(2);
     expect(sass.render).toHaveBeenCalledTimes(2);
   });
+
+  it('should mount satic middleware on start', async () => {
+    expect(magnet.getServer().getEngine().use).not.toHaveBeenCalled();
+
+    await plugin.start(magnet);
+
+    expect(magnet.getServer().getEngine().use).toHaveBeenCalled();
+  })
 });

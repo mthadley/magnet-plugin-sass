@@ -116,7 +116,10 @@ export default {
     } catch(err) {
       throw new Error(`Somethng went wrong compiling your stylesheets:\n${err.message}`);
     }
+  },
 
+  start(magnet) {
+    const outputDir = path.join(magnet.getDirectory(), sassDir);
     serveSassFiles(magnet, outputDir);
   },
 
