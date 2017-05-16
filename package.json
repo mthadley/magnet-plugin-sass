@@ -11,7 +11,7 @@
   ],
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel --presets es2015 -d lib/ src/",
+    "build": "babel --ignore '**/__tests__/**' -d lib/ src/",
     "prepublish": "npm run build",
     "test": "jest"
   },
