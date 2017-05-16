@@ -81,10 +81,10 @@ describe('magnet-plugin-sass', () => {
   });
 
   it('should mount satic middleware on start', async () => {
-    expect(magnet.getServer().getEngine().use).not.toHaveBeenCalled();
+    const spy = magnet.getServer().getEngine().use;
 
+    expect(spy).not.toHaveBeenCalled();
     await plugin.start(magnet);
-
-    expect(magnet.getServer().getEngine().use).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   })
 });
