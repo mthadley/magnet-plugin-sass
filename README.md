@@ -1,5 +1,8 @@
 # magnet-plugin-sass
 
+[![Build
+Status](https://travis-ci.org/mthadley/magnet-plugin-sass.svg?branch=master)](https://travis-ci.org/mthadley/magnet-plugin-sass)
+
 A magnet plugin for compiling your sass stylesheets.
 
 ## Usage
