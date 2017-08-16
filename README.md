@@ -28,3 +28,5 @@ module.exports = {
   }
 };
 ```
+
+All options in the `sass` config will also be passed to `node-sass`.

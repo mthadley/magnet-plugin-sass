@@ -60,12 +60,14 @@ function writeFile(file, css) {
 /**
  * Renders a single sass file
  * @param {!string} file
- * @param {!string} outputDir
+ * @param {!object} config
  * @return {!Promise.<string>} The resulting css
  */
-function renderFile(file) {
+function renderFile(file, config) {
+  const options = Object.assign({file}, config);
+
   return new Promise((resolve, reject) => {
-    sass.render({file}, (err, result) => {
+    sass.render(options, (err, result) => {
       if (err) {
         return reject(err);
       }
@@ -78,11 +80,12 @@ function renderFile(file) {
  * Builds sass files to output dir
  * @param {!Array.<string>} files
  * @param {!string} outputDir
+ * @param {!Object} config
  * @return {!Promise}
  */
-async function buildSassFiles(files, outputDir) {
+async function buildSassFiles(files, outputDir, config) {
   const renderedFiles = await Promise.all(files.map(async file => {
-    const css = await renderFile(file);
+    const css = await renderFile(file, config);
     return {file, css};
   }));
 
@@ -112,7 +115,7 @@ export default {
     const outputDir = path.join(magnet.getDirectory(), sassDir);
 
     try {
-      await buildSassFiles(files, outputDir);
+      await buildSassFiles(files, outputDir, config);
     } catch(err) {
       throw new Error(`Something went wrong compiling your stylesheets:\n${err.message}`);
     }

@@ -27,7 +27,10 @@ describe('magnet-plugin-sass', () => {
         magnet: {
           pluginsConfig: {
             sass: {
-              src: 'test/some_styles.scss'
+              src: 'test/some_styles.scss',
+              includePaths: [
+                'foo/bar'
+              ]
             }
           }
         }
@@ -93,5 +96,14 @@ describe('magnet-plugin-sass', () => {
     });
 
     return expect(plugin.build(magnet)).rejects.toBeInstanceOf(Error);
+  });
+
+  it('should pass other options to sass compiler', async () => {
+    await plugin.build(magnet);
+
+    expect(fs.writeFile).toHaveBeenCalled();
+    expect(sass.render).toHaveBeenCalled();
+
+    expect(sass.render.mock.calls[0][0].includePaths).toEqual(['foo/bar']);
   });
 });
