@@ -1,9 +1,9 @@
 jest
-  .mock('fs')
+  .mock('fs-extra')
   .mock('node-sass');
 
 import * as sass from 'node-sass';
-import fs from 'fs';
+import fs from 'fs-extra';
 import plugin from '../index';
 
 describe('magnet-plugin-sass', () => {

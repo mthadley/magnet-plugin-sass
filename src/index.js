@@ -1,6 +1,6 @@
 import * as sass from 'node-sass';
 import express from 'express';
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 
 /**
@@ -89,9 +89,7 @@ async function buildSassFiles(files, outputDir, config) {
     return {file, css};
   }));
 
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir);
-  }
+  await fs.ensureDir(outputDir);
 
   return Promise.all(renderedFiles.map(({file, css}) => {
     const outputFile = getOutputFile(file, outputDir);
