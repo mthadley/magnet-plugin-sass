@@ -89,9 +89,7 @@ async function buildSassFiles(files, outputDir, config) {
     return {file, css};
   }));
 
-  if (!fs.existsSync(outputDir)) {
-    await fs.ensureDir(outputDir);
-  }
+  await fs.ensureDir(outputDir);
 
   return Promise.all(renderedFiles.map(({file, css}) => {
     const outputFile = getOutputFile(file, outputDir);
